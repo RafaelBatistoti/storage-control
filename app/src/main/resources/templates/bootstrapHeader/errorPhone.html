@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Erro Phone</title>
+
+<body>
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+
+			#erroPhone {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+			#yes-no>a {
+				display: block;
+				margin: 0.5rem;
+			}
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+			#erroPhone {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+			#yes-no>a {
+				display: block;
+				margin: 0.5rem;
+			}
+		}
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+
+			#erroPhone {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			.h5 {
+				padding: 1rem;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				width: 25%;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+			#erroPhone {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			.h5 {
+				padding: 1rem;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				width: 25%;
+				padding: 0.5rem;
+			}
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+
+			#erroPhone {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			.h5 {
+				padding: 1rem;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				width: 25%;
+				padding: 0.5rem;
+			}
+		}
+	</style>
+
+	<nav th:replace="~{menu :: menu}"></nav>
+	<div class="erroPhone-screen">
+		<div th:fragment="erroPhone" id="erroPhone">
+			<div th:each=" phone : ${phoneEmpty}">
+				<div class="border">
+					<p class="h5">Não foi encontrado o telefone: <span class="text-danger">[[${phone.phone}]]</span>.
+						<br>
+						<br>Deseja Cadastrar?
+					</p>
+					<div id="yes-no">
+						<a th:href="@{/registerPessoa/{id}(id=${phone.phone})}" type="submit"
+							class="btn btn-primary">Sim</a>
+						<a th:href="@{/comecoVenda}" class=" btn btn-primary">Não</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

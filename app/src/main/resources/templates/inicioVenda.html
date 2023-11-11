@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Inicio Venda</title>
+
+<body>
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+
+			.container {
+				width: 100%;
+				margin-top: 1rem;
+			}
+
+			#phoneNum {
+				width: 100%;
+				margin: auto;
+				padding: 0.5rem;
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+			#btnNo {
+				display: block;
+			}
+
+			#btnYes {
+				width: 100%;
+			}
+
+			#yes-no>button {
+				margin: 0.5rem 0 0.5rem 0;
+			}
+
+
+			#yes-no {
+				padding: 0.5rem;
+			}
+
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+
+			.container {
+				width: 70%;
+				margin-top: 1rem;
+			}
+
+			#phoneNum {
+				width: 100%;
+				margin: auto;
+				padding: 0.5rem;
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+			#btnNo {
+				display: block;
+			}
+
+			#btnYes {
+				width: 100%;
+			}
+
+			#yes-no>button {
+				margin: 0.5rem 0 0.5rem 0;
+			}
+
+
+			#yes-no {
+				padding: 0.5rem;
+			}
+		}
+
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+
+			.container {
+				width: 50%;
+				margin-top: 1rem;
+			}
+
+			#phoneNum {
+				width: 100%;
+				margin: auto;
+				padding: 0.5rem;
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+			#btnNo {
+				display: block;
+			}
+
+			#btnYes {
+				width: 100%;
+			}
+
+			#yes-no>button {
+				margin: 0.5rem 0 0.5rem 0;
+			}
+
+
+			#yes-no {
+				padding: 0.5rem;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+
+			.container {
+				width: 50%;
+				margin-top: 1rem;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>button,
+			#btnNo {
+				width: 5rem;
+			}
+
+
+			#phoneNum {
+				width: 75%;
+				margin: auto;
+				padding: 0.5rem;
+
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+
+
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+			.container {
+				width: 50%;
+				margin-top: 1rem;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>button,
+			#btnNo {
+				width: 5rem;
+			}
+
+
+			#phoneNum {
+				width: 75%;
+				margin: auto;
+				padding: 0.5rem;
+
+			}
+
+			.h5 {
+				padding: 1.5rem;
+			}
+
+		}
+	</style>
+
+
+	<nav th:replace="~{menu :: menu}"></nav>
+
+	<form action="#" th:action="@{/comecoVendaPost}" method="post" th:object="${item}">
+
+		<div>
+			<div class="container">
+				<div class="border">
+					<p class="h5">Deseja vincular a venda à um cliente?</p>
+					<div class="form-group" id="phoneNum">
+						<label for="code" class="h6" style="color: #353935;">Telefone</label>
+						<input type="number" th:field="*{code}" class="form-control "
+							placeholder="Insira o telefone do cliente">
+					</div>
+					<div id="yes-no">
+						<button type="submit" name="userAction" th:value="false" class="btn btn-primary"
+							id="btnYes">Sim</button>
+						<a th:href="@{/venda}" class="btn btn-primary" id="btnNo">Não</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</body>
+
+</html>

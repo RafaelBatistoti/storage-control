@@ -1,0 +1,9 @@
+<li th:if="${numberOrders} != null" class="nav-item d-flex" th:fragment="carrinho">
+	<a class="nav-link" style="color:#FB8C00;font-weight: bold;" href="/carrinho">Carrinho</a>
+
+	<div th:if="${numberOrders} != null">
+		<p>
+			<small th:text="*{numberOrders}"></small>
+		</p>
+	</div>
+</li>

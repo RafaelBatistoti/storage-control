@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Alterar Peças</title>
+
+<body>
+
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+
+			.screen {
+				width: 95%;
+				margin: auto;
+			}
+
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			#btnAlterar {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+
+			#yes-no>a {
+				margin: 0.5rem;
+				display: block;
+			}
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+			.screen {
+				width: 95%;
+				margin: auto;
+			}
+
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			#btnAlterar {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+
+			#yes-no>a {
+				margin: 0.5rem;
+				display: block;
+			}
+		}
+
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+
+			.screen {
+				width: 75%;
+				margin: auto;
+			}
+
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			form {
+				width: 75%;
+				margin: auto;
+			}
+
+			#code {
+				margin-right: 3px;
+			}
+
+			#alterar {
+				display: flex;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+			.screen {
+				width: 50%;
+				margin: auto;
+			}
+
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#code {
+				margin-right: 3px;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			#alterar {
+				display: flex;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+			.screen {
+				width: 50%;
+				margin: auto;
+			}
+
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#code {
+				margin-right: 3px;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			#alterar {
+				display: flex;
+			}
+
+			#yes-no {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+		}
+	</style>
+
+
+	<nav th:replace="~{menu :: menu}"></nav>
+
+	<div class="d-flex justify-content-center mt-3">
+		<h1 style="color: #353935;">Alterar Peças</h1>
+	</div>
+
+	<div class="">
+		<form action="#" th:action="@{/alterarItem}" method="post" th:object="${item}">
+			<label for="code" class="h6" style="color: #353935;">Código</label>
+			<div id="alterar">
+				<input type="text" th:field="*{code}" class="form-control" id="code"
+					placeholder="Insira o código da peça" required>
+				<button type="submit" class="btn btn-primary" id="btnAlterar">Buscar</button>
+			</div>
+		</form>
+
+		<div th:if="${resultNotFound} != null" class="alert alert-warning" role="alert">
+			<div class="text-center">
+				<p>Produto não encontrado...</p>
+			</div>
+		</div>
+
+		<div th:if="${resultUpdated} != null" class="alert alert-success" role="alert">
+			<div class="text-center">
+				<p>Produto alterado com sucesso...</p>
+			</div>
+		</div>
+
+		<div th:if="${code} != null" class="screen mt-2">
+			<div class="">
+				<div class="border rounded">
+					<p class="h5">Deseja alterar a peça [[${name}]] ?</p>
+
+					<div id="yes-no">
+						<a th:href="@{/updateItem/{id}(id=${code})} " type="submit" class="btn btn-primary">Sim</a>
+						<a class="btn btn-primary" href="/alterar">Não</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

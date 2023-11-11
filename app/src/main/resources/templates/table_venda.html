@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Estoque Atual</title>
+
+<body>
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+
+			a {
+				margin-left: 3px;
+			}
+
+
+			#dataPessoa,
+			#fecharVenda,
+			#tableData {
+				width: 95%;
+				margin: auto
+			}
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#btns {
+				padding-bottom: 2.7rem;
+			}
+
+			#actions {
+				text-align: center;
+			}
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#btns {
+				padding-bottom: 2.7rem;
+			}
+
+			#actions {
+				text-align: center;
+			}
+
+			a {
+				margin-left: 3px;
+			}
+
+
+			#dataPessoa,
+			#fecharVenda,
+			#tableData {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+		}
+
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#actions {
+				text-align: center;
+			}
+
+			#btns {
+				padding-bottom: 2.7rem;
+			}
+
+			a {
+				margin-left: 3px;
+			}
+
+
+			#dataPessoa,
+			#fecharVenda,
+			#tableData {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#btns {
+				padding-bottom: 2.7rem;
+			}
+
+			a {
+				margin-left: 3px;
+			}
+
+
+			#dataPessoa,
+			#fecharVenda,
+			#tableData {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#btns {
+				padding-bottom: 2.7rem;
+			}
+
+			a {
+				margin-left: 3px;
+			}
+
+
+			#dataPessoa,
+			#fecharVenda,
+			#tableData {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+	</style>
+
+	<nav th:replace="~{menu :: menu}"></nav>
+
+	<div th:if="${updatedOk} != null" class="alert alert-success " role="alert">
+		<div class="text-center">
+			<p>O produto foi alterado com sucesso...</p>
+		</div>
+	</div>
+
+	<div th:if="${qntyhight} != null" class="alert alert-danger " role="alert">
+		<div class="text-center">
+			<p>Quantidade maior do que tem no estoque...</p>
+		</div>
+	</div>
+
+	<div th:if="${phoneEmpty} == null" id="dataPessoa">
+		<table th:replace="~{bootstrapHeader/pessoaDataTable :: dataPessoa}"></table>
+	</div>
+
+	<div id="tableData" style="overflow-x: auto;">
+		<table class="table" th:fragment="venda">
+
+			<thead class="bg-light" style="color:#FB8C00;">
+				<tr class="">
+					<th scope="col">Código</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Quantidade</th>
+					<th scope="col">Preço</th>
+					<th scope="col">Fornecedor</th>
+					<th scope="col" id="actions">Ações</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="products : ${productVenda}" class="">
+					<td th:text="*{products.code}" />
+					<td th:text="*{products.name}" />
+					<td th:text="*{products.desc}" />
+					<td th:text="*{products.qnt}" />
+					<td th:text="*{products.price}" />
+					<td th:text="*{products.suplly}" />
+					<td class="d-flex" id="btns"><a th:href="@{/carrinhoId/{id}(id=${products.code})}" type="submit"
+							class="btn btn-primary">Remover</a>
+						<a th:href="@{/alterarCarrinho/{id}(id=${products.code})}" type="submit"
+							class="btn btn-primary ">Alterar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:if="${itemQnt} != null" id="fecharVenda">
+		<div th:replace="~{fecharVenda :: fecharVenda}"></div>
+	</div>
+
+</body>
+
+</html>

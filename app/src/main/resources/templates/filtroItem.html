@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Estoque Atual</title>
+
+<body>
+	<div th:fragment="filtro" class="overflow-auto">
+		<table class="table">
+			<thead class="bg-light" style="color:#FB8C00;">
+				<tr>
+					<th scope="col">Código</th>
+					<th scope="col">Nome</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Quantidade</th>
+					<th scope="col">Preço</th>
+					<th scope="col">Fornecedor</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr th:each="products : ${product}" class="text-center">
+					<td th:text="*{products.code}" />
+					<td th:text="*{products.name}" />
+					<td th:text="*{products.desc}" />
+					<td th:text="*{products.qnt}" />
+					<td th:text="*{products.price}" />
+					<td th:text="*{products.suplly}" />
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

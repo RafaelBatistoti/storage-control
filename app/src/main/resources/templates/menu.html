@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Menu</title>
+
+<body>
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+		}
+	</style>
+	<nav class="navbar navbar-expand-lg bg-light" th:fragment="menu">
+		<div class="container-fluid">
+			<button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<div><small th:text="*{numberOrders}" style="font-weight: bold;font-size: 15px;"></small>
+				</div>
+				<span>
+					<i class="bi bi-list h1"></i>
+				</span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" style="color:#FB8C00;font-weight: bold;" href="#"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Cadastro
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="/register" style="color:#FB8C00;">Peças</a></li>
+							<li><a class="dropdown-item" href="/pessoa" style="color:#FB8C00;">Pessoas</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" style="color:#FB8C00; font-weight: bold;"
+							href="/alterar">Alterar</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" style="color:#FB8C00;font-weight: bold;" href="/filtro">Filtrar Peças</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" style="color:#FB8C00;font-weight: bold;" href="/gerarEstoque">Gerar
+							Estoque</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" style="color:#FB8C00;font-weight: bold;" href="/comecoVenda">Venda Peças</a>
+					</li>
+
+					<li th:replace="~{bootstrapHeader/carrinho :: carrinho}"></li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div th:if="${soldSucc} == true" class="alert alert-success" role="alert">
+		<div class="text-center">
+			<p>Venda realizada com sucesso...</p>
+		</div>
+	</div>
+
+</body>
+
+</html>

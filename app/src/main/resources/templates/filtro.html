@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+<title>Filtro de Peças</title>
+
+<body>
+
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+			#filtoItem {
+				overflow: auto;
+				width: 95%;
+				margin: auto;
+			}
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+
+			}
+
+			.btn {
+
+				display: block;
+				margin: auto;
+				margin-top: 5px;
+				margin-bottom: 5px;
+				width: 95%
+			}
+
+			#yes-no {
+				width: 95%;
+				margin: auto;
+			}
+
+			#btnFiltrar {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+			#filtoItem {
+				overflow: auto;
+				width: 95%;
+				margin: auto;
+			}
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			.alert {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+			}
+
+			#btnFiltrar {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+
+			.btn {
+
+				display: block;
+				margin: auto;
+				margin-top: 5px;
+				margin-bottom: 5px;
+				width: 95%
+			}
+
+			#yes-no {
+				width: 95%;
+				margin: auto;
+			}
+		}
+
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+			#filtoItem {
+				overflow: auto;
+				width: 95%;
+				margin: auto;
+			}
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			.alert {
+				width: 75%;
+				margin: auto;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#filtrar {
+				display: flex;
+			}
+
+			#btnFiltrar {
+				margin-left: 3px;
+			}
+
+			#yes-no-div {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no-div>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+			#yes-no {
+				width: 75%;
+				margin: auto;
+			}
+
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+
+			#filtoItem {
+				overflow: auto;
+				width: 50%;
+				margin: auto;
+			}
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#filtrar {
+				display: flex;
+			}
+
+			#btnFiltrar {
+				margin-left: 3px;
+			}
+
+			#yes-no-div {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no-div>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+			#yes-no {
+				width: 50%;
+				margin: auto;
+			}
+
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+			#filtoItem {
+				overflow: auto;
+				width: 50%;
+				margin: auto;
+			}
+
+			.h5 {
+				margin: 0.5rem;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			.alert {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			#filtrar {
+				display: flex;
+			}
+
+			#btnFiltrar {
+				margin-left: 3px;
+			}
+
+			#yes-no-div {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+			}
+
+			#yes-no-div>a {
+				padding: 0.5rem 2rem 0.5rem 2rem;
+			}
+
+			#yes-no {
+				width: 50%;
+				margin: auto;
+			}
+
+		}
+	</style>
+
+
+	<nav th:replace="~{menu :: menu}"></nav>
+
+	<div class="d-flex justify-content-center mt-3">
+		<h1 style="color: #353935;">Filtro de Peças</h1>
+	</div>
+
+	<div class="container">
+		<form action="#" th:action="@{/filtroItem}" method="post" th:object="${item}">
+			<label for="code" class="h6" style="color: #353935;">Código</label>
+			<div id="filtrar">
+				<input type="text" th:field="*{code}" class="form-control " id="code"
+					placeholder="Insira o código da peça" required>
+				<button type="submit" class="btn btn-primary" id="btnFiltrar">Filtrar</button>
+			</div>
+		</form>
+
+		<div th:if="${product} != null" id="filtoItem" class="mt-2">
+			<div th:replace="~{filtroItem :: filtro}"></div>
+		</div>
+
+
+		<div th:if="${resultNotFound} != null" class="alert alert-danger" role="alert">
+			<div class="text-center">
+				<p>Produto não encontrado...</p>
+			</div>
+		</div>
+
+		<div th:if="${filterNotFound}" class="alert alert-danger " role="alert">
+			<div class="text-center">
+				<p>Produto não encontrado...</p>
+			</div>
+		</div>
+
+		<div th:if="${filterNotFound}" id="yes-no" class="mt-2">
+			<div>
+				<div class="border rounded">
+					<p class="h5">Produto não cadastrado. Deseja cadastrar?</p>
+					<div id="yes-no-div">
+						<a th:href="@{/register}" type="submit" class="btn btn-primary">Sim</a>
+						<a class="btn btn-primary " href="/filtro">Não</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

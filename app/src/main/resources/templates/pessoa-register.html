@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{bootstrapHeader/head :: head}"></head>
+
+<title>Cadastro de Clientes</title>
+
+<body>
+
+	<style>
+		/* Extra small devices (portrait phones, less than 576px) */
+		@media (max-width: 575.98px) {
+
+			.alertCep {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+				padding: 1rem 1rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			#buscarBtn,
+			#cadastroBtn {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+
+		}
+
+		/* Small devices (landscape phones, 576px and up) */
+		@media (min-width: 576px) and (max-width: 767.98px) {
+			.alertCep {
+				width: 95%;
+				margin: auto;
+				margin-top: 1rem;
+				padding: 1rem 1rem;
+			}
+
+			form {
+				width: 95%;
+				margin: auto;
+
+			}
+
+			#buscarBtn,
+			#cadastroBtn {
+				width: 100%;
+				margin-top: 0.5rem;
+			}
+		}
+
+		/* Medium devices (tablets, 768px and up)*/
+		@media (min-width: 768px) and (max-width: 991.98px) {
+			.alertCep {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+				padding: 1rem 1rem;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			#cepPC,
+			#rua,
+			#cidade {
+				display: flex;
+
+			}
+
+			#cep-input {
+				width: 100%;
+			}
+
+			#num,
+			#estado {
+				margin-left: 3px;
+			}
+
+			#buscarBtn {
+				margin-top: 1.8rem;
+				margin-left: 3px;
+			}
+
+			#cadastroBtn {
+				margin-top: 0.5rem;
+			}
+		}
+
+		/* Large devices (desktops, 992px and up)*/
+		@media (min-width: 992px) and (max-width: 1199.98px) {
+
+			.alertCep {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+				padding: 1rem 1rem;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			#cepPC,
+			#rua,
+			#cidade {
+				display: flex;
+
+			}
+
+			#cep-input {
+				width: 100%;
+			}
+
+			#num,
+			#estado {
+				margin-left: 3px;
+			}
+
+			#buscarBtn {
+				margin-top: 1.8rem;
+				margin-left: 3px;
+			}
+
+			#cadastroBtn {
+				margin-top: 0.5rem;
+			}
+
+
+		}
+
+		/* Extra large devices (large desktops, 1200px and up)*/
+		@media (min-width: 1200px) {
+
+			.alertCep {
+				width: 50%;
+				margin: auto;
+				margin-top: 1rem;
+				padding: 1rem 1rem;
+			}
+
+			form {
+				width: 50%;
+				margin: auto;
+
+			}
+
+			#cep-input {
+				width: 100%;
+			}
+
+			#cepPC,
+			#rua,
+			#cidade {
+				display: flex;
+
+			}
+
+			#num,
+			#estado {
+				margin-left: 3px;
+			}
+
+
+			#buscarBtn {
+				margin-top: 1.8rem;
+				margin-left: 3px;
+			}
+
+			#cadastroBtn {
+				margin-top: 0.5rem;
+			}
+
+		}
+	</style>
+
+
+	<nav th:replace="~{menu :: menu}"></nav>
+
+	<div class="d-flex justify-content-center mt-2" th:fragment="title">
+		<h1 style="color: #353935;">Cadastro de Clientes</h1>
+	</div>
+
+	<div th:if="${err} != null" class="alert-danger alertCep border rounded" role="alert" th:fragment="erro">
+		<div class="text-center">
+			<p>Cep não encontrado...</p>
+		</div>
+	</div>
+
+	<form action="#" th:action="@{/registerPessoa}" method="post" th:object="${pessoa}">
+		<div class="mt-2">
+
+			<div th:if="${message}" th:text="${message}" class="text-center alert alert-success" role="alert" />
+
+			<div class="form-group">
+				<label for="code" id="codeLabel" class="h6" style="color: #353935;">Telefone</label>
+				<input type="number" th:field="*{phone}" class="form-control" id="code"
+					placeholder="Insira o telefone do cliente" required>
+				<div class="invalid-feedback">
+					Campo de Código mandatório
+				</div>
+			</div>
+			<div class="form-group mt-2">
+				<label for="name" id="nameLabel" class="h6" style="color: #353935;">Nome</label>
+				<input type="text" th:field="*{name}" class="form-control " id="name"
+					placeholder="Insira o nome do cliente" required>
+				<div class="invalid-feedback">
+					Campo de Nome mandatório
+				</div>
+			</div>
+
+
+			<div class=" mt-2" id="cepPC">
+				<div class="form-group" id="cep-input">
+					<label for="zipCode" class="h6" style="color: #353935;">CEP</label>
+					<input type="number" th:field="*{zipCode}" class="form-control" id="zipCode"
+						placeholder="Insira CEP">
+					<div class="invalid-feedback">
+						Campo de Código mandatório
+					</div>
+				</div>
+
+				<div class="">
+					<button type="submit" id="buscarBtn" name="userAction" th:value="false"
+						class="btn btn-primary">Buscar</button>
+				</div>
+			</div>
+
+			<div id="rua">
+				<div class="form-group  mt-2 w-100">
+					<label for="street" class="h6" style="color: #353935;">Rua</label>
+					<input type="text" th:field="*{street}" class="form-control" placeholder="Nome da rua">
+					<div class="invalid-feedback">
+						Campo de Quantidade mandatório
+					</div>
+				</div>
+
+				<div class="form-group mt-2" id="num">
+					<label for="number" class="h6" style="color:#353935;">Nº</label>
+					<input type="text" th:field="*{number}" class="form-control" placeholder="Numero">
+				</div>
+			</div>
+
+
+			<div id="cidade">
+				<div class="form-group  mt-2 w-100">
+					<label for="price" class="h6" style="color: #353935;">Cidade</label>
+					<input type="text" step="any" th:field="*{city}" class="form-control " id="city"
+						placeholder="Insira o cidade">
+				</div>
+				<div class="form-group  mt-2" id="estado">
+					<label for="state" class="h6" style="color:#353935;">Estado</label>
+					<input type="text" th:field="*{state}" class="form-control " placeholder="Insira estado">
+				</div>
+
+			</div>
+
+			<div class="form-group  mt-2">
+				<label for="complement" id="complementLabel" class="h6" style="color:#353935;">Complemento</label>
+				<input type="text" th:field="*{complement}" class="form-control" id="complement"
+					placeholder="Insira um complemento">
+			</div>
+			<div>
+				<button id="cadastroBtn" type="submit" name="userAction" th:value="true"
+					class="btn btn-primary">Cadastrar</button>
+			</div>
+		</div>
+	</form>
+</body>
+
+</html>

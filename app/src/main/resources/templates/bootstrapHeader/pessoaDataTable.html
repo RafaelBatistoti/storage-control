@@ -1,0 +1,19 @@
+<div>
+	<table class="table mt-3" th:fragment="dataPessoa">
+
+		<thead class="bg-light" style="color:#FB8C00;">
+			<tr class="">
+				<th scope="col">Telefone</th>
+				<th scope="col">Nome</th>
+
+			</tr>
+		</thead>
+		<tbody>
+
+			<tr th:each="dataPessoa : ${pessoaData}" class="">
+				<td th:text="*{dataPessoa.phone}" />
+				<td th:text="*{dataPessoa.name}" />
+			</tr>
+		</tbody>
+	</table>
+</div>
