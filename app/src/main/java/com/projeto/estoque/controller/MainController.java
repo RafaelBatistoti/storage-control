@@ -1,6 +1,5 @@
 package com.projeto.estoque.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class MainController {
 
 	private String globalSearchField;
 	private List<Item> listProduct, listProductNewQnt, listProductOrig;
+	private List<Pessoa> listPhone;
 	private Pessoa ps = new Pessoa();
 
 	@Autowired
@@ -108,7 +108,7 @@ public class MainController {
 
 		return "alterar";
 	}
-//comen
+
 	@GetMapping("/updateItem/{id}")
 	public String updateForm(@PathVariable(value = "id") String code, Model model) {
 		Item item = repoService.getById(code);
@@ -188,7 +188,7 @@ public class MainController {
 		String phone = item.getCode().toString();
 
 		List<Pessoa> listProducts = repoServices.getAllPessoa();
-		List<Pessoa> listPhone = new ArrayList<>();
+		listPhone = new ArrayList<>();
 
 		for (Pessoa phoneNum : listProducts) {
 
@@ -237,7 +237,10 @@ public class MainController {
 	@GetMapping("/venda")
 	public String showvenda(Model model) {
 		Item item = new Item();
-
+		
+		ps.setPhone(null);
+		ps.setName(null);
+		
 		executeCarrinho(model);
 
 		model.addAttribute("item", item);
@@ -367,16 +370,22 @@ public class MainController {
 		}
 
 		model.addAttribute("productVenda", newCollection);
+		ps.setPhone(null);
+		ps.setName(null);
 
 		return "table_venda";
 	}
 
 	@GetMapping("/carrinho")
-	public String showcarrinho(Model model) {
+	public String showcarrinho(Model model, String phone) {
 
 		executeCarrinho(model);
 
-		model.addAttribute("pessoaData", ps);
+		System.out.println(phone);
+
+		if (ps.getPhone() != null) {
+			model.addAttribute("pessoaData", ps);
+		}
 
 		model.addAttribute("productVenda", this.listProductNewQnt);
 
@@ -526,6 +535,8 @@ public class MainController {
 
 		this.listProductOrig.clear();
 		this.listProductNewQnt.clear();
+		ps.setPhone(null);
+		ps.setName(null);
 
 		model.addAttribute("listaFinal", this.listProductNewQnt.size());
 		model.addAttribute("soldSucc", true);
@@ -551,7 +562,6 @@ public class MainController {
 		return this.listProduct;
 	}
 
-		
 	private List<Item> itemLoopVendaOrig(List<Item> listProducts, String qnt) {
 		this.listProductOrig = new ArrayList<Item>();
 

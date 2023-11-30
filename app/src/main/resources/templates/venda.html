@@ -5,222 +5,99 @@
 <title>Venda de Peças</title>
 
 <body>
-
-	<style>
-		/* Extra small devices (portrait phones, less than 576px) */
-		@media (max-width: 575.98px) {
-
-			#filtro {
-				width: 95%;
-				margin: auto;
-			}
-
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			.alert {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			#btnVender,
-			#btnAdd {
-				width: 100%;
-				margin-top: 0.5rem;
-			}
-		}
-
-		/* Small devices (landscape phones, 576px and up) */
-		@media (min-width: 576px) and (max-width: 767.98px) {
-			#filtro {
-				width: 95%;
-				margin: auto;
-			}
-
-			.alert {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			#btnVender,
-			#btnAdd {
-				width: 100%;
-				margin-top: 0.5rem;
-
-			}
-
-		}
-
-
-		/* Medium devices (tablets, 768px and up)*/
-		@media (min-width: 768px) and (max-width: 991.98px) {
-			#filtro {
-				width: 75%;
-				margin: auto;
-			}
-
-			#qnt {
-				display: flex;
-			}
-
-			form {
-				width: 75%;
-				margin: auto;
-
-			}
-
-			#btnAdd,
-			#btnVender {
-				margin-left: 3px;
-
-			}
-
-			#vender {
-				display: flex;
-			}
-
-
-
-			.alert {
-				width: 75%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-		}
-
-		/* Large devices (desktops, 992px and up)*/
-		@media (min-width: 992px) and (max-width: 1199.98px) {
-			#filtro {
-				width: 50%;
-				margin: auto;
-			}
-
-			#vender {
-				display: flex;
-			}
-
-			#qnt {
-				display: flex;
-			}
-
-			#btnAdd,
-			#btnVender {
-				margin-left: 3px;
-
-			}
-
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			.alert {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-		}
-
-		/* Extra large devices (large desktops, 1200px and up)*/
-		@media (min-width: 1200px) {
-			#filtro {
-				width: 50%;
-				margin: auto;
-			}
-
-			#vender {
-				display: flex;
-			}
-
-			#qnt {
-				display: flex;
-			}
-
-			#btnAdd,
-			#btnVender {
-				margin-left: 3px;
-
-			}
-
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			.alert {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-		}
-	</style>
-
-	<nav th:replace="~{menu :: menu}"></nav>
-
-	<div class="d-flex justify-content-center mt-3 mb-3">
-		<h1 style="color: #353935;">Venda de Peças</h1>
-	</div>
-
-	<div th:if="${qntyhight} != null" class="alert alert-danger " role="alert">
-		<div class="text-center">
-			<p>Quantidade maior do que tem no estoque...</p>
-		</div>
-	</div>
-
-	<div class="">
-		<form action="#" th:action="@{/vendaItem}" method="post" th:object="${item}">
-			<label for="code" class="h6" style="color: #353935;">Código</label>
-			<div id="vender">
-				<input type="text" th:field="*{code}" class="form-control" id="code"
-					placeholder="Insira o código da peça" required>
-				<button type="submit" class="btn btn-primary" id="btnVender">Buscar</button>
+	<header>
+		<nav th:replace="~{menu :: menu}"></nav>
+	</header>
+	<main>
+		<section>
+			<div class="row container-fluid">
+				<div class="col-12 p-3 h1 text-center">Venda</div>
 			</div>
-		</form>
-
-		<div th:if="${qntyZero} != null" class="alert alert-warning " role="alert">
-			<div class="text-center">
-				<p>Quantidade 0 no estoque...</p>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<form action="#" th:action="@{/vendaItem}" method="post" th:object="${item}">
+							<div class="mb-2">
+								<label class="h6 form-label fw-bold" style="color: #353935;">Código</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-upc"></i></div>
+									<input type="text" th:field="*{code}" class="form-control " id="code" required>
+									<div class="ms-1">
+										<button type="submit" class="btn btn-primary fw-bold">Buscar</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${qntyZero} != null" class="alert alert-warning" role="alert">
+							<div class="text-center">
+								<p>Quantidade 0 no estoque...</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-
-		<div th:if="${product} != null" class="mt-2" id="filtro">
-			<div th:replace="~{filtroItem :: filtro}"></div>
-		</div>
-
-		<div th:if="${itemNotFound} != null" class="alert alert-danger " role="alert">
-			<div class="text-center">
-				<p>Produto não encontrado...</p>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${qntyhight} != null" class="alert alert-danger" role="alert">
+							<div class="text-center">
+								<p>Quantidade maior do que tem no estoque...</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-
-
-		<form action="#" th:action="@{/vendaItem}" method="post" th:object="${item}"
-			th:if="${product} != null or ${productVenda} != null">
-			<label for="code" class="h6" style="color: #353935;">Quantidade</label>
-			<div id="qnt">
-				<input type="number" th:field="*{qnt}" class="form-control" id="code"
-					placeholder="Insira uma quatidade pra venda" required>
-				<button type="submit" class="btn btn-primary" id="btnAdd">Add</button>
+		</section>
+		<section>
+			<div th:if="${product} != null" id="filtro">
+				<div th:replace="~{filtroItem :: filtro}"></div>
 			</div>
-		</form>
-
-	</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${itemNotFound} != null" class="alert alert-danger " role="alert">
+							<div class="text-center">
+								<p>Produto não encontrado...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${qntyZero} == null">
+							<form action="#" th:action="@{/vendaItem}" method="post" th:object="${item}"
+								th:if="${product} != null or ${productVenda} != null">
+								<label class="h6 form-label fw-bold" style="color: #353935;">Quantidade</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-upc"></i></div>
+									<input type="number" th:field="*{qnt}" class="form-control" id="code" required>
+									<div class="ms-1">
+										<button type="submit" class="btn btn-primary fw-bold">Add</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		</section>
+	</main>
 </body>
 
 </html>

@@ -6,134 +6,75 @@
 <title>Cadastro de Peças</title>
 
 <body>
-
-
-	<style>
-		/* Extra small devices (portrait phones, less than 576px) */
-		@media (max-width: 575.98px) {
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			#cadastroBtn {
-				width: 100%;
-				margin-top: 0.5rem;
-			}
-		}
-
-		/* Small devices (landscape phones, 576px and up) */
-		@media (min-width: 576px) and (max-width: 767.98px) {
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			#cadastroBtn {
-				width: 100%;
-				margin-top: 0.5rem;
-			}
-		}
-
-		/* Medium devices (tablets, 768px and up)*/
-		@media (min-width: 768px) and (max-width: 991.98px) {
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			#cadastroBtn {
-				margin-top: 0.5rem;
-			}
-		}
-
-		/* Large devices (desktops, 992px and up)*/
-		@media (min-width: 992px) and (max-width: 1199.98px) {
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			#cadastroBtn {
-				margin-top: 0.5rem;
-			}
-		}
-
-		/* Extra large devices (large desktops, 1200px and up)*/
-		@media (min-width: 1200px) {
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			#cadastroBtn {
-				margin-top: 0.5rem;
-			}
-		}
-	</style>
-
-
-
-	<nav th:replace="~{menu :: menu}"></nav>
-
-	<div class="d-flex justify-content-center mt-3" th:fragment="title">
-		<h1 style="color: #353935;">Cadastro de Peças</h1>
-	</div>
-
-	<form action="#" th:action="@{/registerItem}" method="post" th:object="${item}">
-
-		<div th:if="${message}" th:text="${message}" class="text-center alert alert-success" role="alert" />
-
-		<div class="form-group ">
-			<label for="code" class="h6" style="color: #353935;">Código</label>
-			<input type="text" th:field="*{code}" class="form-control" id="code" placeholder="Insira o código da peça"
-				required>
-			<div class="invalid-feedback">
-				Campo de Código mandatório
+	<header>
+		<nav th:replace="~{menu :: menu}"></nav>
+	</header>
+	<main>
+		<section>
+			<div class="row container-fluid">
+				<div class="col-12 p-3 h1 text-center">Cadastro de Peças</div>
 			</div>
-		</div>
-		<div class="form-group mt-2">
-			<label for="name" class="h6" style="color: #353935;">Nome</label>
-			<input type="text" th:field="*{name}" class="form-control " id="name" placeholder="Insira o nome da peça"
-				required>
-			<div class="invalid-feedback">
-				Campo de Nome mandatório
-			</div>
-		</div>
-		<div class="form-floating  mt-3">
-			<textarea class="form-control" placeholder="Insira a descrição" th:field="*{desc}" id="desc"
-				required></textarea>
-			<label for="desc" class="h6" style="color: #353935;">Descrição</label>
-			<div class="invalid-feedback">
-				Campo de Descrição mandatório
-			</div>
-		</div>
-		<div class="form-group  mt-2">
-			<label for="qnt" class="h6" style="color: #353935;">Quantidade</label>
-			<input type="number" th:field="*{qnt}" class="form-control" id="qnt" placeholder="Apenas números" required>
-			<div class="invalid-feedback">
-				Campo de Quantidade mandatório
-			</div>
-		</div>
-		<div class="form-group  mt-2">
-			<label for="price" class="h6" style="color: #353935;">Preço</label>
-			<input type="number" step="any" th:field="*{price}" class="form-control" id="price"
-				placeholder="Insira o Preço">
-		</div>
-		<div class="form-group  mt-2">
-			<label for="forn" class="h6" style="color:#353935;">Forncedor</label>
-			<input type="text" th:field="*{suplly}" class="form-control" id="forn" placeholder="Insira um  fornecedor">
-		</div>
-		<div class="">
-			<button id="cadastroBtn" type="submit" class="btn btn-primary">Cadastrar</button>
-		</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${message}" th:text="${message}" class="text-center alert alert-success"
+							role="alert" />
+						<form action="#" th:action="@{/registerItem}" method="post" th:object="${item}">
+							<div class="form-group">
+								<label for="code" class=" h6 form-label fw-bold" style="color: #353935;">Código</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-upc"></i></div>
+									<input type="text" th:field="*{code}" class="form-control" id="code" required>
+								</div>
+							</div>
+							<div class="form-group mt-2">
+								<label for="name" class=" h6 form-label fw-bold" style="color: #353935;">Nome</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-wrench"></i></div>
+									<input type="text" th:field="*{name}" class="form-control" id="name">
+								</div>
+							</div>
+							<div class="form-group  mt-3">
+								<label for="desc" class=" h6 form-label fw-bold"
+									style="color: #353935;">Descrição</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-pencil-fill"></i></div>
+									<textarea th:field="*{desc}" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group  mt-2">
+								<label for="qnt" class=" h6 form-label fw-bold"
+									style="color: #353935;">Quantidade</label>
+								<input type="number" th:field="*{qnt}" class="form-control" id="qnt" required>
 
-	</form>
+							</div>
+							<div class="form-group  mt-2">
+								<label for="price" class=" h6 form-label fw-bold" style="color: #353935;">Preço</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-currency-dollar"></i></div>
+									<input type="number" th:field="*{price}" class="form-control" id="price">
+								</div>
+							</div>
+							<div class="form-group  mt-2">
+								<label for="forn" class=" h6 form-label fw-bold"
+									style="color:#353935;">Forncedor</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-truck"></i></div>
+									<input type="text" th:field="*{suplly}" class="form-control" id="forn">
+								</div>
+							</div>
+							<div class="col-12 col-sm-4 col-md-4 col-lg-4 mt-2">
+								<button type="submit" class="btn btn-primary fw-bold w-100">Registrar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
 </body>
 
 </html>

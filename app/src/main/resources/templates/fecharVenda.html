@@ -1,68 +1,37 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="fecharVenda">
+	<div class="container" id="total">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Quantidade Itens</th>
+								<th scope="col">Valor Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="products : ${itemQnt}">
+								<td th:text="*{products}" />
 
-<head th:replace="~{bootstrapHeader/head :: head}"></head>
-
-<body>
-
-
-
-
-	<div th:fragment="fecharVenda">
-
-		<table class="table">
-
-			<thead class="bg-light" style="color:#FB8C00;">
-				<tr class="text-center">
-					<th scope="col">Quantidade Itens</th>
-					<th scope="col">Valor Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="products : ${itemQnt}" class="text-center">
-					<td th:text="*{products}" />
-
-					<div th:each="product : ${itemTotalPrice}">
-						<td th:text="${product}" />
-					</div>
-				</tr>
-			</tbody>
-
-		</table>
-		
-		<style>
-			/* Extra small devices (portrait phones, less than 576px) */
-			@media (max-width: 575.98px) {
-				a {
-					width: 100%;
-					margin-top: 3px;
-				}
-			}
-
-			/* Small devices (landscape phones, 576px and up) */
-			@media (min-width: 576px) and (max-width: 767.98px) {
-				a {
-					width: 100%;
-					margin-top: 3px;
-				}
-			}
-
-
-			/* Medium devices (tablets, 768px and up)*/
-			@media (min-width: 768px) and (max-width: 991.98px) {}
-
-			/* Large devices (desktops, 992px and up)*/
-			@media (min-width: 992px) and (max-width: 1199.98px) {}
-
-			/* Extra large devices (large desktops, 1200px and up)*/
-			@media (min-width: 1200px) {}
-		</style>
-
-		<a th:replace="~{bootstrapHeader/btn :: i}"></a>
-		<a th:replace="~{bootstrapHeader/btn :: v}"></a>
-
+								<div th:each="product : ${itemTotalPrice}">
+									<td th:text="${product}" />
+								</div>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-
-</body>
-
-</html>
+	<div class="container" id="btn">
+		<div class="row">
+			<div class="col-12 col-md-4 offset-md-2 col-lg-3 offset-lg-3">
+				<a th:href="@{/vender}" type="submit" class="btn fw-bold btn-primary fw-bold w-100 mb-1">Vender</a>
+			</div>
+			<div class="col-12 col-md-4 col-lg-3 offset-lg-0">
+				<button onclick="printPage()" class="btn btn-primary fw-bold w-100">Imprimir</button>
+			</div>
+		</div>
+	</div>
+</section>

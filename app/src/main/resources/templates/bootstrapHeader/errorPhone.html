@@ -5,137 +5,38 @@
 <title>Erro Phone</title>
 
 <body>
-
-	<style>
-		/* Extra small devices (portrait phones, less than 576px) */
-		@media (max-width: 575.98px) {
-
-			#erroPhone {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			.h5 {
-				padding: 1.5rem;
-			}
-
-			#yes-no>a {
-				display: block;
-				margin: 0.5rem;
-			}
-		}
-
-		/* Small devices (landscape phones, 576px and up) */
-		@media (min-width: 576px) and (max-width: 767.98px) {
-			#erroPhone {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			.h5 {
-				padding: 1.5rem;
-			}
-
-			#yes-no>a {
-				display: block;
-				margin: 0.5rem;
-			}
-		}
-
-		/* Medium devices (tablets, 768px and up)*/
-		@media (min-width: 768px) and (max-width: 991.98px) {
-
-			#erroPhone {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			.h5 {
-				padding: 1rem;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				width: 25%;
-			}
-		}
-
-		/* Large devices (desktops, 992px and up)*/
-		@media (min-width: 992px) and (max-width: 1199.98px) {
-			#erroPhone {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			.h5 {
-				padding: 1rem;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				width: 25%;
-				padding: 0.5rem;
-			}
-		}
-
-		/* Extra large devices (large desktops, 1200px and up)*/
-		@media (min-width: 1200px) {
-
-			#erroPhone {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			.h5 {
-				padding: 1rem;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				width: 25%;
-				padding: 0.5rem;
-			}
-		}
-	</style>
-
-	<nav th:replace="~{menu :: menu}"></nav>
-	<div class="erroPhone-screen">
-		<div th:fragment="erroPhone" id="erroPhone">
-			<div th:each=" phone : ${phoneEmpty}">
-				<div class="border">
-					<p class="h5">Não foi encontrado o telefone: <span class="text-danger">[[${phone.phone}]]</span>.
-						<br>
-						<br>Deseja Cadastrar?
-					</p>
-					<div id="yes-no">
-						<a th:href="@{/registerPessoa/{id}(id=${phone.phone})}" type="submit"
-							class="btn btn-primary">Sim</a>
-						<a th:href="@{/comecoVenda}" class=" btn btn-primary">Não</a>
+	<header>
+		<nav th:replace="~{menu :: menu}"></nav>
+	</header>
+	<main>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div
+						class="col-10 offset-1 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3 p-3 border rounded mt-4">
+						<div th:fragment="erroPhone">
+							<div th:each=" phone : ${phoneEmpty}">
+								<p class="h5 mb-3">Não foi encontrado o telefone: <span
+										class="text-danger">[[${phone.phone}]]</span>.
+									<br>
+									<br>Deseja Cadastrar?
+								</p>
+								<div class="row">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-1">
+										<a th:href="@{/registerPessoa/{id}(id=${phone.phone})}" type="submit"
+											class="btn btn-primary fw-bold w-100">Sim</a>
+									</div>
+									<div class="col-md-6 col-lg-6">
+										<a th:href="@{/venda}" class="btn btn-primary fw-bold w-100">Não</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
+	</main>
 </body>
 
 </html>

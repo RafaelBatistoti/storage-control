@@ -5,259 +5,83 @@
 <title>Alterar Peças</title>
 
 <body>
-
-
-	<style>
-		/* Extra small devices (portrait phones, less than 576px) */
-		@media (max-width: 575.98px) {
-
-			.screen {
-				width: 95%;
-				margin: auto;
-			}
-
-
-			.h5 {
-				margin: 0.5rem;
-			}
-
-
-			.alert {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			#btnAlterar {
-				width: 100%;
-				margin-top: 0.5rem;
-			}
-
-			#yes-no>a {
-				margin: 0.5rem;
-				display: block;
-			}
-		}
-
-		/* Small devices (landscape phones, 576px and up) */
-		@media (min-width: 576px) and (max-width: 767.98px) {
-			.screen {
-				width: 95%;
-				margin: auto;
-			}
-
-
-			.h5 {
-				margin: 0.5rem;
-			}
-
-			.alert {
-				width: 95%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			form {
-				width: 95%;
-				margin: auto;
-
-			}
-
-			#btnAlterar {
-				width: 100%;
-				margin-top: 0.5rem;
-			}
-
-			#yes-no>a {
-				margin: 0.5rem;
-				display: block;
-			}
-		}
-
-
-		/* Medium devices (tablets, 768px and up)*/
-		@media (min-width: 768px) and (max-width: 991.98px) {
-
-			.screen {
-				width: 75%;
-				margin: auto;
-			}
-
-
-			.h5 {
-				margin: 0.5rem;
-			}
-
-			.alert {
-				width: 75%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			form {
-				width: 75%;
-				margin: auto;
-			}
-
-			#code {
-				margin-right: 3px;
-			}
-
-			#alterar {
-				display: flex;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				padding: 0.5rem 2rem 0.5rem 2rem;
-			}
-
-		}
-
-		/* Large devices (desktops, 992px and up)*/
-		@media (min-width: 992px) and (max-width: 1199.98px) {
-			.screen {
-				width: 50%;
-				margin: auto;
-			}
-
-
-			.h5 {
-				margin: 0.5rem;
-			}
-
-			.alert {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			#code {
-				margin-right: 3px;
-			}
-
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			#alterar {
-				display: flex;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				padding: 0.5rem 2rem 0.5rem 2rem;
-			}
-
-		}
-
-		/* Extra large devices (large desktops, 1200px and up)*/
-		@media (min-width: 1200px) {
-			.screen {
-				width: 50%;
-				margin: auto;
-			}
-
-
-			.h5 {
-				margin: 0.5rem;
-			}
-
-			.alert {
-				width: 50%;
-				margin: auto;
-				margin-top: 1rem;
-			}
-
-			#code {
-				margin-right: 3px;
-			}
-
-			form {
-				width: 50%;
-				margin: auto;
-
-			}
-
-			#alterar {
-				display: flex;
-			}
-
-			#yes-no {
-				display: flex;
-				justify-content: space-around;
-				padding: 1rem;
-			}
-
-			#yes-no>a {
-				padding: 0.5rem 2rem 0.5rem 2rem;
-			}
-
-		}
-	</style>
-
-
-	<nav th:replace="~{menu :: menu}"></nav>
-
-	<div class="d-flex justify-content-center mt-3">
-		<h1 style="color: #353935;">Alterar Peças</h1>
-	</div>
-
-	<div class="">
-		<form action="#" th:action="@{/alterarItem}" method="post" th:object="${item}">
-			<label for="code" class="h6" style="color: #353935;">Código</label>
-			<div id="alterar">
-				<input type="text" th:field="*{code}" class="form-control" id="code"
-					placeholder="Insira o código da peça" required>
-				<button type="submit" class="btn btn-primary" id="btnAlterar">Buscar</button>
+	<header>
+		<nav th:replace="~{menu :: menu}"></nav>
+	</header>
+	<main>
+		<section>
+			<div class="row container-fluid">
+				<div class="col-12 p-3 h1 text-center">Alterar Peças</div>
 			</div>
-		</form>
-
-		<div th:if="${resultNotFound} != null" class="alert alert-warning" role="alert">
-			<div class="text-center">
-				<p>Produto não encontrado...</p>
-			</div>
-		</div>
-
-		<div th:if="${resultUpdated} != null" class="alert alert-success" role="alert">
-			<div class="text-center">
-				<p>Produto alterado com sucesso...</p>
-			</div>
-		</div>
-
-		<div th:if="${code} != null" class="screen mt-2">
-			<div class="">
-				<div class="border rounded">
-					<p class="h5">Deseja alterar a peça [[${name}]] ?</p>
-
-					<div id="yes-no">
-						<a th:href="@{/updateItem/{id}(id=${code})} " type="submit" class="btn btn-primary">Sim</a>
-						<a class="btn btn-primary" href="/alterar">Não</a>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<form action="#" th:action="@{/alterarItem}" method="post" th:object="${item}">
+							<div class="mb-2">
+								<label class="h6 form-label fw-bold" style="color: #353935;">Código</label>
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-upc"></i></div>
+									<input type="text" th:field="*{code}" class="form-control " id="code" required>
+									<div class="ms-1">
+										<button type="submit" class="btn btn-primary fw-bold">Buscar</button>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
-
+				</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${resultNotFound} != null" class="alert alert-warning " role="alert">
+							<div class="text-center">
+								<p>Produto não encontrado...</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div th:if="${resultUpdated} != null" class="alert alert-success " role="alert">
+							<div class="text-center">
+								<p>Produto alterado com sucesso...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="container" th:if="${code} != null">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div class="mb-2">
+							<div class="border rounded p-4">
+								<p class="h5 text-center mb-3">Deseja alterar a peça [[${name}]] ?</p>
+								<div class="row">
+									<div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-1">
+										<a th:href="@{/updateItem/{id}(id=${code})} " type="submit"
+											class="btn btn-primary w-100">Sim</a>
+									</div>
+									<div class="col-md-6 col-lg-6">
+										<a th:href="@{/alterar}" class="btn btn-primary w-100">Não</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</section>
+	</main>
 </body>
 
 </html>

@@ -5,94 +5,49 @@
 <title>Estoque Atual</title>
 
 <body>
-
-	<style>
-		/* Extra small devices (portrait phones, less than 576px) */
-		@media (max-width: 575.98px) {
-			.btn {
-				width: 100%;
-				margin: 1rem 0 1rem 0;
-			}
-
-
-
-		}
-
-		/* Small devices (landscape phones, 576px and up) */
-		@media (min-width: 576px) and (max-width: 767.98px) {
-			.btn {
-				width: 100%;
-				margin: 1rem 0 1rem 0;
-			}
-
-
-		}
-
-
-		/* Medium devices (tablets, 768px and up)*/
-		@media (min-width: 768px) and (max-width: 991.98px) {
-			.btn {
-
-				margin: 1rem 0 1rem 0;
-			}
-
-
-		}
-
-		/* Large devices (desktops, 992px and up)*/
-		@media (min-width: 992px) and (max-width: 1199.98px) {
-			.btn {
-
-				margin: 1rem 0 1rem 0;
-			}
-
-
-		}
-
-		/* Extra large devices (large desktops, 1200px and up)*/
-		@media (min-width: 1200px) {
-			.btn {
-
-				margin: 1rem 0 1rem 0;
-			}
-
-
-		}
-	</style>
-
-
-	<nav th:replace="~{menu :: menu}"></nav>
-
-	<div class="container">
-		<a th:href="@{/gerarEstoque}" class="btn btn-primary">Gerar Estoque</a>
-	</div>
-
-	<div class=" overflow-auto container">
-		<table class="table">
-			<thead class="bg-light text-center" style="color:#FB8C00;">
-				<tr>
-					<th scope="col">Código</th>
-					<th scope="col">Nome</th>
-					<th scope="col">Descrição</th>
-					<th scope="col">Quantidade</th>
-					<th scope="col">Preço</th>
-					<th scope="col">Fornecedor</th>
-				</tr>
-			</thead>
-			<tbody>
-
-				<tr th:each="items : *{item}" class="text-center">
-					<td th:text="*{items.code}" />
-					<td th:text="*{items.name}" />
-					<td th:text="*{items.desc}" />
-					<td th:text="*{items.qnt}" />
-					<td th:text="*{items.price}" />
-					<td th:text="*{items.suplly}" />
-				</tr>
-
-			</tbody>
-		</table>
-	</div>
+	<header>
+		<nav th:replace="~{menu :: menu}"></nav>
+	</header>
+	<main>
+		<section>
+			<div class="row container-fluid">
+				<div class="col-12 p-3 h1 text-center">Estoque Total</div>
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr class="">
+										<th scope="col">Código</th>
+										<th scope="col">Nome</th>
+										<th scope="col">Descrição</th>
+										<th scope="col">Quantidade</th>
+										<th scope="col">Preço</th>
+										<th scope="col">Fornecedor</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="items : *{item}" class="text-center">
+										<td th:text="*{items.code}" />
+										<td th:text="*{items.name}" />
+										<td th:text="*{items.desc}" />
+										<td th:text="*{items.qnt}" />
+										<td th:text="*{items.price}" />
+										<td th:text="*{items.suplly}" />
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
 </body>
 
 </html>
